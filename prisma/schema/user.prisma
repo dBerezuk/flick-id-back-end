@@ -1,0 +1,14 @@
+model User {
+  id               String            @id @default(cuid())
+  email            String            @unique @db.VarChar(256)
+  password         String
+  name             String?           @db.VarChar(50)
+  avatarFileName   String?           @map("avatar_file_name")
+  isAdmin          Boolean           @default(false) @map("is_admin")
+  mediaHistories   MediaHistory[]
+  mediaWatchLaters MediaWatchLater[]
+  createdAt        DateTime          @default(now()) @map("created_at")
+  updatedAt        DateTime          @updatedAt @map("updated_at")
+
+  @@map("user")
+}

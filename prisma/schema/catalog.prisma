@@ -1,0 +1,10 @@
+model Catalog {
+  id        String   @id @default(cuid())
+  title     String   @db.VarChar(25)
+  media     Media[]
+  slug      String   @unique @db.VarChar(15)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("catalog")
+}

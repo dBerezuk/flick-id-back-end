@@ -1,0 +1,9 @@
+model Genre {
+  id        String   @id @default(cuid())
+  title     String   @db.VarChar(25)
+  media     Media[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("genre")
+}

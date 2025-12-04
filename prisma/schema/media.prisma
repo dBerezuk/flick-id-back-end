@@ -1,0 +1,23 @@
+model Media {
+  id                 String            @id @default(cuid())
+  title              String
+  posterFullFileName String?           @map("poster_full_file_name")
+  posterFileName     String            @map("poster_file_name")
+  slug               String            @unique @db.VarChar(15)
+  description        String            @db.VarChar(500)
+  slogan             String            @db.VarChar(50)
+  country            String
+  premiere           DateTime
+  mediaFileName      String            @map("media_file_name")
+  views              Int               @default(0)
+  genreId            String            @map("genre_id")
+  genre              Genre             @relation(fields: [genreId], references: [id])
+  catalogId          String            @map("catalog_id")
+  catalog            Catalog           @relation(fields: [catalogId], references: [id])
+  mediaHistories     MediaHistory[]
+  MediaWatchLaters   MediaWatchLater[]
+  createdAt          DateTime          @default(now()) @map("created_at")
+  updatedAt          DateTime          @updatedAt @map("updated_at")
+
+  @@map("media")
+}
